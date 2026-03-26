@@ -3,7 +3,7 @@ const container = document.querySelector('#drawing-pad');
 
 function createGrid(size) {
     container.innerHTML = '';
-    const cellSize = 100 / size; // Assuming the container is 500px by 500px
+    const cellSize = 100 / size;
 
     for (let i = 0; i < size * size; i++) {
         const cell = document.createElement('div');
