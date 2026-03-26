@@ -1,5 +1,7 @@
 const container = document.querySelector('#drawing-pad');
 const startButton = document.querySelector('#start-game');
+const resetButton = document.querySelector('#reset-game');
+let fieldSize = 16; // default grid size
 
 function getGridSize() {
     let gridSize;
@@ -10,6 +12,8 @@ function getGridSize() {
     } while (isNaN(gridSize) || gridSize < 1 || gridSize > 100);
 
     createGrid(gridSize);
+
+    return gridSize;
 }
 
 function askForNumber() {
@@ -41,4 +45,12 @@ container.addEventListener('mouseover', function (event) {
     cell.style.backgroundColor = `rgba(0, 0, 0, ${grad / 10})`;
 });
 
-startButton.addEventListener('click', getGridSize);
+startButton.addEventListener('click', () => {
+    fieldSize = getGridSize();
+});
+
+resetButton.addEventListener('click', function () {
+    createGrid(fieldSize);
+});
+
+createGrid(fieldSize);
