@@ -50,6 +50,7 @@ startButton.addEventListener('click', () => {
 });
 
 resetButton.addEventListener('click', function () {
+    if (!fieldSize) fieldSize = 16; // default to 16 if not set
     createGrid(fieldSize);
 });
 
