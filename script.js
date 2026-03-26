@@ -40,3 +40,5 @@ container.addEventListener('mouseover', function (event) {
     cell.dataset.gradation = grad;
     cell.style.backgroundColor = `rgba(0, 0, 0, ${grad / 10})`;
 });
+
+startButton.addEventListener('click', getGridSize);
