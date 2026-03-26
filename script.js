@@ -1,5 +1,23 @@
-const gridSize = 16;
 const container = document.querySelector('#drawing-pad');
+const startButton = document.querySelector('#start-game');
+
+function getGridSize() {
+    let gridSize;
+
+    do {
+        gridSize = askForNumber();
+        if (gridSize === null) return;
+    } while (isNaN(gridSize) || gridSize < 1 || gridSize > 100);
+
+    createGrid(gridSize);
+}
+
+function askForNumber() {
+    let number = prompt("Enter a number between 1 and 100:");
+    if (number === null) return null;
+
+    return Number(number);
+}
 
 function createGrid(size) {
     container.innerHTML = '';
@@ -14,7 +32,7 @@ function createGrid(size) {
     }
 }
 
-container.addEventListener('mouseover', function(event) {
+container.addEventListener('mouseover', function (event) {
     const cell = event.target.closest('.cell');
     if (!cell) return;
 
@@ -22,5 +40,3 @@ container.addEventListener('mouseover', function(event) {
     cell.dataset.gradation = grad;
     cell.style.backgroundColor = `rgba(0, 0, 0, ${grad / 10})`;
 });
-
-createGrid(gridSize);
