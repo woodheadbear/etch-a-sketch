@@ -36,13 +36,25 @@ function createGrid(size) {
     }
 }
 
+function getRandomColors() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `${r}, ${g}, ${b}`;
+}
+
 container.addEventListener('mouseover', function (event) {
     const cell = event.target.closest('.cell');
     if (!cell) return;
 
     const grad = Math.min(+(cell.dataset.gradation || '0') + 1, 10);
     cell.dataset.gradation = grad;
-    cell.style.backgroundColor = `rgba(0, 0, 0, ${grad / 10})`;
+
+    if (!cell.dataset.color) {
+        cell.dataset.color = getRandomColors();
+    }
+
+    cell.style.backgroundColor = `rgba(${cell.dataset.color}, ${grad / 10})`;
 });
 
 startButton.addEventListener('click', () => {
